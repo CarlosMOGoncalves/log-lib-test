@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>pt.test.cmg</groupId>
+	<artifactId>log-lib-test</artifactId>
+	<version>1.0.0</version>
+	
+	<packaging>jar</packaging>
+
+	<properties>
+		<!-- General properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- JAVA version -->
+		<java-version>1.8</java-version>
+
+		<!-- Maven plugin versions -->
+		<clean-plugin-version>3.1.0</clean-plugin-version>
+		<compiler-plugin-version>3.8.0</compiler-plugin-version>
+		<source-plugin-version>3.2.0</source-plugin-version>
+		<deploy-plugin-version>3.0.0-M1</deploy-plugin-version>
+		<install-plugin-version>3.0.0-M1</install-plugin-version>
+		<resources-plugin-version>3.1.0</resources-plugin-version>
+		<surefire-plugin-version>3.0.0-M1</surefire-plugin-version>
+		<surefire-reporting-plugin-version>3.0.0-M3</surefire-reporting-plugin-version>
+
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- Maven Clean Plugin , used to clean up after build -->
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${clean-plugin-version}</version>
+				</plugin>
+
+				<!-- Maven Compiler Plugin , for JARs -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${compiler-plugin-version}</version>
+					<configuration>
+						<target>${java-version}</target>
+						<source>${java-version}</source>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+
+				<!-- Maven Source Plugin , to automatically generate sources jar -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${source-plugin-version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- Maven Resources plugin, copies the resources to output directory to include in final JAR -->
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${resources-plugin-version}</version>
+				</plugin>
+
+				<!-- Maven Install plugin, install the build artifacts into the LOCAL repository -->
+				<plugin>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${install-plugin-version}</version>
+				</plugin>
+
+				<!-- Maven Deploy plugin, to deploy built artifacts to a remote repository, not that we use it but at least this version is controlled -->
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${deploy-plugin-version}</version>
+				</plugin>
+
+
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<!--force the source plugin to be executed on build -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>jakarta.json</artifactId>
+			<version>1.1.6</version>
+		</dependency>
+	</dependencies>
+
+</project>

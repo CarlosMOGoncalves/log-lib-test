@@ -1,0 +1,15 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+# Ignore Netbeans configuration files
+*/nb-configuration.xml
+
+# Eclipse configuration and bin files
+.project
+.settings
+.classpath
+target
+bin
+
+# IntelliJ project configuration
+.idea/
+*.iml
